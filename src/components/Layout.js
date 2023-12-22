@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 
-export const AppLayout = () => {
+export const Layout = () => {
   return (
     <>
       <header>
@@ -16,7 +16,9 @@ export const AppLayout = () => {
         </nav>
       </header>
       <main>
+        {/* <Suspense fallback={<div>Loading...</div>}> */}
         <Outlet />
+        {/* </Suspense> */}
       </main>
     </>
   );

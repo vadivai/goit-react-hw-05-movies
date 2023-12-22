@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchSearchMovies, fetchTrendMovies } from 'service/api';
+import Movies from './Movies';
+import { TrendLIst } from 'components/TrendsLIst/TrendsList';
 
 // const styleHome = {
 //   display: 'flex',
 //   flexDirection: 'column',
 //   gap: '10px',
 // };
-
-fetchTrendMovies();
-fetchSearchMovies('Titanik');
 
 // export default function () {
 //   const [quizItems, setQuizItems] = useState([]);
@@ -30,9 +29,46 @@ fetchSearchMovies('Titanik');
 //     getQuizzes();
 //   }, []);
 
-export const Home = () => {
+//список фильмов из трендов - запрос и рендеринг ссылок на фильмы, переходим на MovieDetail
+// useEffect(() => {
+//   return () => {};
+// }, []);
+// посмотреть в домашке 3 как делал запрос
+
+const Home = () => {
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const getMovies = async () => {
+      setIsLoading(true);
+      setError(false);
+
+      try {
+        const fetchData = await fetchTrendMovies();
+        // console.log('fetchData', fetchData);
+        setMovies(prevState => [...prevState, ...fetchData]);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getMovies();
+  }, []);
+
+  console.log('movies', movies);
+
   return (
-    <div>Trending today</div>
-    //список фильмов из трендов - запрос и рендеринг ссылок на фильмы, переходим на MovieDetail
+    <>
+      <h2>Trending today</h2>
+      {isLoading && <h3>Loading...</h3>}
+      {error && <h2>Something went wrong...</h2>}
+      {movies.length > 0 && <TrendLIst movies={movies} />}
+    </>
   );
 };
+
+export default Home;

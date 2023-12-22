@@ -11,8 +11,8 @@ axios.defaults.params = {
 // /trending/get-trending список самых популярных фильмов на сегодня для создания коллекции на главной странице.
 export const fetchTrendMovies = async () => {
   const response = await axios.get('/3/trending/movie/day');
-  console.log('response.data', response.data);
-  return response.data;
+  // console.log('response.data.results', response.data.results);
+  return response.data.results;
 };
 
 // /search/search-movies поиск кинофильма по ключевому слову на странице фильмов.

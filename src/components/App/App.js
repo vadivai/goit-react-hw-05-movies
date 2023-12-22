@@ -1,11 +1,27 @@
-import { NavLink, Navigate, Route, Routes } from 'react-router-dom';
-import { AppLayout } from 'components/App/AppLayout';
-import { Home } from 'pages/Home';
-import { Movies } from 'pages/Movies';
-import { MovieDetails } from 'pages/MovieDetails';
-import { Cast } from 'components/Cast';
-import { Reviews } from 'components/Reviews';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { Layout } from 'components/Layout';
+import Home from 'pages/Home';
+import Movies from 'pages/Movies';
+import MovieDetails from 'pages/MovieDetails';
+import Cast from 'components/Cast';
+import Reviews from 'components/Reviews';
 import NotFoundPage from 'pages/NotFoundPage';
+
+// const Home = lazy(() => import('../pages/Home'));
+// const Dogs = lazy(() => import('../pages/Dogs'));
+// const DogDetails = lazy(() => import('../pages/DogDetails'));
+// const Gallery = lazy(() =>
+//   import('./Gallery').then(module => ({
+//     ...module,
+//     default: module.Gallery,
+//   }))
+// );
+// const SubBreeds = lazy(() =>
+//   import('./SubBreeds').then(module => ({
+//     ...module,
+//     default: module.SubBreeds,
+//   }))
+// );
 
 // const fetchUsers = async () => {
 //  const response = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -23,7 +39,7 @@ import NotFoundPage from 'pages/NotFoundPage';
 export const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<AppLayout />}>
+      <Route path="/" element={<Layout />}>
         <Route path="/" index element={<Home />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:movieId" element={<MovieDetails />}>

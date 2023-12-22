@@ -1,4 +1,4 @@
-import { ContactsItem } from 'components/ContactsItem/ContactsItem';
+import { ContactsItem } from 'components/movieCard/ContactsItem';
 
 export const ContactsList = ({ items, onDelete }) => {
   return (
