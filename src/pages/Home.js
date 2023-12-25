@@ -9,26 +9,6 @@ import { TrendLIst } from 'components/TrendsLIst/TrendsList';
 //   gap: '10px',
 // };
 
-// export default function () {
-//   const [quizItems, setQuizItems] = useState([]);
-
-//   useEffect(() => {
-//     async function getQuizzes() {
-//       try {
-//         setIsLoading(true);
-//         setError(false);
-//         const initialQuizzes = await fetchQuizzes();
-//         setQuizItems(initialQuizzes);
-//       } catch (error) {
-//         setError(true);
-//       } finally {
-//         setIsLoading(false);
-//       }
-//     }
-
-//     getQuizzes();
-//   }, []);
-
 //список фильмов из трендов - запрос и рендеринг ссылок на фильмы, переходим на MovieDetail
 // useEffect(() => {
 //   return () => {};
@@ -59,7 +39,7 @@ const Home = () => {
     getMovies();
   }, []);
 
-  console.log('movies', movies);
+  // console.log('movies', movies);
 
   return (
     <>

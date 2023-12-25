@@ -1,4 +1,4 @@
-import { LiItem } from './ContactsItem.styled';
+import { LiItem } from './MovieItem.styled';
 
 export const ContactsItem = ({ item, onDelete }) => {
   return (
