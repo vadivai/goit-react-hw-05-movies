@@ -1,23 +1,20 @@
-import React, { useEffect } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import { useFetchMovieDetails } from 'hooks/useFetchMovieDetails';
+import { MovieItem } from 'components/MovieCard/MovieItem';
 
-const MovieDetails = () => {
-  const { movieId } = useParams;
-  console.log('movieId', movieId);
-  // HTTP-запрос
-  // useEffect(() => {
-  //   return () => {};
-  // }, []);
+export const MovieDetails = () => {
+  // const location = useLocation();
+  // const backLinkLocationRef = useRef(location.state?.from ?? '/dogs');
 
-  // const DogDetails = () => {
-  //   const location = useLocation();
-  //   const backLinkLocationRef = useRef(location.state?.from ?? '/dogs');
-  //   const { dogId } = useParams();
+  const { movie, isLoading, error } = useFetchMovieDetails();
 
   return (
     <>
-      <div>MovieDetails</div>
-      <Link> Назад к странице коллекции</Link>
+      {/* <Link> Назад к странице коллекции</Link> */}
+      {isLoading && <h3>Loading...</h3>}
+      {error && <h2>Something went wrong...</h2>}
+      {movie && <MovieItem movieItem={movie} />}
       <ul>
         <li>
           <Link to="cast">MovieActors</Link>

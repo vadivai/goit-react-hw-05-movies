@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
 
-export const TrendLIst = ({ movies }) => {
+export const TrendList = ({ movies }) => {
   return (
     <div>
       <ul>
         {movies.map(({ id, title }) => (
           <li key={id}>
-            <Link to={`/movies/${id}`}>{title}</Link>
+            <Link to={`/movies/${id}`} title={title}>
+              {title}
+            </Link>
           </li>
         ))}
       </ul>

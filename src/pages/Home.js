@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { fetchSearchMovies, fetchTrendMovies } from 'service/api';
-import Movies from './Movies';
-import { TrendLIst } from 'components/TrendsLIst/TrendsList';
+import React from 'react';
+import { useFetchTrends } from 'hooks/useFetchTrends';
+import { TrendList } from 'components/TrendList/TrendList';
 
 // const styleHome = {
 //   display: 'flex',
@@ -9,44 +8,15 @@ import { TrendLIst } from 'components/TrendsLIst/TrendsList';
 //   gap: '10px',
 // };
 
-//список фильмов из трендов - запрос и рендеринг ссылок на фильмы, переходим на MovieDetail
-// useEffect(() => {
-//   return () => {};
-// }, []);
-// посмотреть в домашке 3 как делал запрос
-
 const Home = () => {
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const getMovies = async () => {
-      setIsLoading(true);
-      setError(false);
-
-      try {
-        const fetchData = await fetchTrendMovies();
-        // console.log('fetchData', fetchData);
-        setMovies(prevState => [...prevState, ...fetchData]);
-      } catch (error) {
-        setError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getMovies();
-  }, []);
-
-  // console.log('movies', movies);
+  const { movies, isLoading, error } = useFetchTrends();
 
   return (
     <>
       <h2>Trending today</h2>
       {isLoading && <h3>Loading...</h3>}
       {error && <h2>Something went wrong...</h2>}
-      {movies.length > 0 && <TrendLIst movies={movies} />}
+      {movies.length > 0 && <TrendList movies={movies} />}
     </>
   );
 };
