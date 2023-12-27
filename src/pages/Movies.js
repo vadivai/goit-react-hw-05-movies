@@ -1,43 +1,53 @@
-import { MoviesList } from 'components/MovieList/MovieList';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { fetchSearchMovies } from 'service/api';
+import React from 'react';
+import { Searchbar } from 'components/SearchBar/SearchBar';
+import { useFetchSearch } from 'hooks/useFetchSearch';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  // const location = useLocation();
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const movieId = searchParams.get('movieId') ?? '';
 
-  useEffect(() => {
-    const getMovies = async () => {
-      setIsLoading(true);
-      setError(false);
+  const { movies, isLoading, error } = useFetchSearch();
 
-      try {
-        const fetchData = await fetchSearchMovies('Titanik');
-        // console.log('fetchData', fetchData);
-        setMovies(prevState => [...prevState, fetchData]);
-      } catch (error) {
-        setError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  // const updateQueryString = evt => {
+  //    const dogIdValue = evt.target.value;
+  //    if (dogIdValue === '') {
+  //      return setSearchParams({});
+  //    }
+  //    setSearchParams({ dogId: dogIdValue });
+  //  };
 
-    getMovies();
-  }, []);
+  // return (
+  //     <div>
+  //       <input type="text" value={dogId} onChange={updateQueryString} />
+  //       <ul>
+  //         {visibleDogs.map(dog => {
+  //           return (
+  //             <li key={dog}>
+  //               <Link to={`${dog}`} state={{ from: location }}>
+  //                 {dog}
+  //               </Link>
+  //             </li>
+  //           );
+  //         })}
+  //       </ul>
+  //     </div>
+  //   );
+  // };
 
-  // console.log('movies', movies);
+  // export default Dogs;
 
   return (
     <>
-      <h2>Movies</h2>
       {isLoading && <h3>Loading...</h3>}
       {error && <h2>Something went wrong...</h2>}
-      {movies.length > 0 && <MoviesList movies={movies} />}
+      {movies && <Searchbar />}
     </>
   );
 };
+
+export default Movies;
 
 // const Dogs = () => {
 //   const [dogs, setDogs] = useState([
@@ -63,8 +73,6 @@ const Movies = () => {
 //    }
 //    setSearchParams({ dogId: dogIdValue });
 //  };
-
-export default Movies;
 
 // return (
 //     <div>

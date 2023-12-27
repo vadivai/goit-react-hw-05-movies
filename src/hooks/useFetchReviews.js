@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { fetchMovieDetails } from 'service/api';
+import { fetchMovieReviews } from 'service/api';
 
-export const useFetchMovieDetails = () => {
+export const useFetchMovieReviews = () => {
   // const location = useLocation();
   // const backLinkLocationRef = useRef(location.state?.from ?? '/dogs');
 
-  const [movie, setMovie] = useState(null);
+  const [reviews, setReviews] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const { movieId } = useParams();
@@ -15,11 +15,11 @@ export const useFetchMovieDetails = () => {
     setIsLoading(true);
     setError(false);
 
-    const getMovieItem = async () => {
+    const getReviewsItem = async () => {
       try {
-        const data = await fetchMovieDetails(movieId);
-        // console.log('DataDetails', data);
-        setMovie(data);
+        const data = await fetchMovieReviews(movieId);
+        // console.log('Reviews', data);
+        setReviews(data);
       } catch (error) {
         setError(error);
       } finally {
@@ -27,8 +27,8 @@ export const useFetchMovieDetails = () => {
       }
     };
 
-    getMovieItem();
+    getReviewsItem();
   }, [movieId]);
 
-  return { movie, isLoading, error };
+  return { reviews, isLoading, error };
 };

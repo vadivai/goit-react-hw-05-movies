@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Layout } from 'components/Layout';
+import { Layout } from 'components/Layout/Layout';
 import Home from 'pages/Home';
 import Movies from 'pages/Movies';
 import MovieDetails from 'pages/MovieDetails';
-import Cast from 'components/Cast';
-import Reviews from 'components/Reviews';
+import Cast from 'components/Cast/Cast';
+import Reviews from 'components/Reviews/Reviews';
 import NotFoundPage from 'pages/NotFoundPage';
 
 // const Home = lazy(() => import('../pages/Home'));

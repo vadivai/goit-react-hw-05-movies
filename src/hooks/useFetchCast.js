@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { fetchMovieDetails } from 'service/api';
+import { fetchMovieActors } from 'service/api';
 
-export const useFetchMovieDetails = () => {
+export const useFetchMovieCast = () => {
   // const location = useLocation();
   // const backLinkLocationRef = useRef(location.state?.from ?? '/dogs');
 
-  const [movie, setMovie] = useState(null);
+  const [cast, setCast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const { movieId } = useParams();
@@ -15,11 +15,10 @@ export const useFetchMovieDetails = () => {
     setIsLoading(true);
     setError(false);
 
-    const getMovieItem = async () => {
+    const getCastItem = async () => {
       try {
-        const data = await fetchMovieDetails(movieId);
-        // console.log('DataDetails', data);
-        setMovie(data);
+        const data = await fetchMovieActors(movieId);
+        setCast(data);
       } catch (error) {
         setError(error);
       } finally {
@@ -27,8 +26,8 @@ export const useFetchMovieDetails = () => {
       }
     };
 
-    getMovieItem();
+    getCastItem();
   }, [movieId]);
 
-  return { movie, isLoading, error };
+  return { cast, isLoading, error };
 };

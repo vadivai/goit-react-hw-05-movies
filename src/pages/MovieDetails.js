@@ -1,26 +1,28 @@
-import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import React, { useRef } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useFetchMovieDetails } from 'hooks/useFetchMovieDetails';
-import { MovieItem } from 'components/MovieCard/MovieItem';
+import { MovieInfo } from 'components/MovieInfo/MovieInfo';
 
 export const MovieDetails = () => {
   // const location = useLocation();
-  // const backLinkLocationRef = useRef(location.state?.from ?? '/dogs');
 
   const { movie, isLoading, error } = useFetchMovieDetails();
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   return (
     <>
-      {/* <Link> Назад к странице коллекции</Link> */}
+      <Link to={backLinkLocationRef.current}>Go back</Link>
       {isLoading && <h3>Loading...</h3>}
       {error && <h2>Something went wrong...</h2>}
-      {movie && <MovieItem movieItem={movie} />}
+      {movie && <MovieInfo movieInfo={movie} />}
+      <p>Additional information</p>
       <ul>
         <li>
-          <Link to="cast">MovieActors</Link>
+          <Link to="cast">Cast</Link>
         </li>
         <li>
-          <Link to="reviews">MovieReviews</Link>
+          <Link to="reviews">Reviews</Link>
         </li>
       </ul>
       {/* <Suspense fallback={<div>LOADING SUBPAGE...</div>}> */}

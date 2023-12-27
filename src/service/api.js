@@ -19,27 +19,27 @@ export const fetchTrendMovies = async () => {
 // /search/search-movies поиск кинофильма по ключевому слову на странице фильмов.
 export const fetchSearchMovies = async movieName => {
   const response = await axios.get(`search/movie?query=${movieName}`);
-  console.log('response.data', response.data);
+  console.log('SearchMovies', response.data);
   return response.data;
 };
 
 // /movies/get-movie-details запрос полной информации о фильме для страницы кинофильма.
 export const fetchMovieDetails = async movieId => {
   const response = await axios.get(`movie/${movieId}`);
-  console.log('response.data', response.data);
+  // console.log('response.data', response.data);
   return response.data;
 };
 
 // /movies/get-movie-credits запрос информации о актёрском составе для страницы кинофильма.
 export const fetchMovieActors = async movieId => {
   const response = await axios.get(`movie/${movieId}/credits`);
-  console.log('response.data', response.data);
-  return response.data.results;
+  // console.log('cast', response.data.cast);
+  return response.data.cast;
 };
 
 // /movies/get-movie-reviews запрос обзоров для страницы кинофильма.
 export const fetchMovieReviews = async movieId => {
   const response = await axios.get(`movie/${movieId}/reviews`);
-  console.log('response.data', response.data);
+  // console.log('response.data', response.data);
   return response.data.results;
 };
