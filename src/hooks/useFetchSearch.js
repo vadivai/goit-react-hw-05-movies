@@ -7,7 +7,7 @@ export const useFetchSearch = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') ?? '';
   // console.log('searchParams', searchQuery );
 

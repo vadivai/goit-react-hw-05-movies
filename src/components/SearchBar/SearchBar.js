@@ -9,8 +9,7 @@ import { useState } from 'react';
 export const Searchbar = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  // const searchQuery = searchParams.get('query') ?? '';
+  const [, setSearchParams] = useSearchParams();
   const onChange = e => {
     setSearchQuery(e.target.value);
   };
