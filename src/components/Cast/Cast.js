@@ -4,8 +4,6 @@ import { CastInfo } from 'components/CastInfo/CastInfo';
 
 export const Cast = () => {
   const { cast, isLoading, error } = useFetchMovieCast();
-  // const location = useLocation();
-  // const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   return (
     <>

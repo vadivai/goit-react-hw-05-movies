@@ -1,40 +1,26 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
 import { Layout } from 'components/Layout/Layout';
-import Home from 'pages/Home';
-import Movies from 'pages/Movies';
-import MovieDetails from 'pages/MovieDetails';
-import Cast from 'components/Cast/Cast';
-import Reviews from 'components/Reviews/Reviews';
 import NotFoundPage from 'pages/NotFoundPage';
 
-// const Home = lazy(() => import('../pages/Home'));
-// const Dogs = lazy(() => import('../pages/Dogs'));
-// const DogDetails = lazy(() => import('../pages/DogDetails'));
-// const Gallery = lazy(() =>
-//   import('./Gallery').then(module => ({
+import Reviews from 'components/Reviews/Reviews';
+
+const Home = lazy(() => import('pages/Home'));
+const Movies = lazy(() => import('pages/Movies'));
+const MovieDetails = lazy(() => import('pages/MovieDetails'));
+const Cast = lazy(() =>
+  import('components/Cast/Cast').then(module => ({
+    ...module,
+    default: module.Cast,
+  }))
+);
+
+// const Reviews = lazy(() =>
+//   import('components/Reviews/Reviews.js').then(module => ({
 //     ...module,
-//     default: module.Gallery,
+//     default: module.Reviews,
 //   }))
 // );
-// const SubBreeds = lazy(() =>
-//   import('./SubBreeds').then(module => ({
-//     ...module,
-//     default: module.SubBreeds,
-//   }))
-// );
-
-// const fetchUsers = async () => {
-//  const response = await fetch("https://jsonplaceholder.typicode.com/users");
-//  const users = await response.json();
-//  return users;
-// };
-// fetchUsers().then(users => console.log(users));
-
-// '/' - компонент Home, домашняя страница со списком популярных кинофильмов.
-// '/movies' - компонент Movies, страница поиска фильмов по ключевому слову.
-// '/movies/:movieId' - компонент MovieDetails, страница с детальной информацией о кинофильме.
-// /movies/:movieId/cast - компонент Cast, информация о актерском составе. Рендерится на странице MovieDetails.
-// /movies/:movieId/reviews - компонент Reviews, информация об обзорах. Рендерится на странице MovieDetails.
 
 export const App = () => {
   return (
@@ -48,7 +34,13 @@ export const App = () => {
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
-      {/* <Route path="*" element={<NotFoundPage />} /> */}
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };
+
+// '/' - компонент Home, домашняя страница со списком популярных кинофильмов.
+// '/movies' - компонент Movies, страница поиска фильмов по ключевому слову.
+// '/movies/:movieId' - компонент MovieDetails, страница с детальной информацией о кинофильме.
+// /movies/:movieId/cast - компонент Cast, информация о актерском составе. Рендерится на странице MovieDetails.
+// /movies/:movieId/reviews - компонент Reviews, информация об обзорах. Рендерится на странице MovieDetails.

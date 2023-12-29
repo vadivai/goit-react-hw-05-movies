@@ -13,7 +13,7 @@ export const CastInfo = ({ castInfo }) => {
                 alt={name}
               />
             ) : (
-              <NoPhoto2></NoPhoto2>
+              <NoPhoto2 />
               //   <NoPhoto />
             )}
             <p>{name}</p>

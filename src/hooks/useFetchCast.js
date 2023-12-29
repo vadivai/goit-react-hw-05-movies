@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchMovieActors } from 'service/api';
 
 export const useFetchMovieCast = () => {
-  // const location = useLocation();
-  // const backLinkLocationRef = useRef(location.state?.from ?? '/dogs');
-
-  const [cast, setCast] = useState(null);
+  const [cast, setCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const { movieId } = useParams();
