@@ -8,11 +8,11 @@ export const useFetchSearch = () => {
   const [error, setError] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const movieName = searchParams.get('query') ?? '';
-  // console.log('searchParams', movieName);
+  const searchQuery = searchParams.get('query') ?? '';
+  // console.log('searchParams', searchQuery );
 
   useEffect(() => {
-    if (!movieName) {
+    if (!searchQuery) {
       return;
     }
     setIsLoading(true);
@@ -20,7 +20,7 @@ export const useFetchSearch = () => {
 
     const getSearchMovies = async () => {
       try {
-        const data = await fetchSearchMovies(movieName);
+        const data = await fetchSearchMovies(searchQuery);
         // console.log('SearchMovies', data);
         setMovies(data);
       } catch (error) {
@@ -31,11 +31,12 @@ export const useFetchSearch = () => {
     };
 
     getSearchMovies();
-  }, [movieName]);
+  }, [searchQuery]);
 
-  const onHandleSubmit = value => {
-    // setSearchParams({ query: value });
-  };
+  // const onHandleSubmit = value => {
+  //   setSearchParams({ query: value });
+  // };
+  // setSearchParams({ query: movieName });
 
-  return { movies, isLoading, error, onHandleSubmit };
+  return { movies, isLoading, error };
 };

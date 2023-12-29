@@ -6,32 +6,27 @@ import {
 } from './SearchBar.styled';
 import { useState } from 'react';
 
-export const Searchbar = ({ onHandleSubmit }) => {
-  const [query, setQuery] = useState('');
+export const Searchbar = () => {
+  const [searchQuery, setSearchQuery] = useState('');
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const searchQuery = searchParams.get('query') ?? '';
   const onChange = e => {
-    setQuery(e.target.value);
+    setSearchQuery(e.target.value);
   };
 
-  const onSubmit = e => {
-    e.preventDefault();
+  const onSubmit = event => {
+    event.preventDefault();
 
-    onHandleSubmit(query);
-    setQuery('');
-  };
-
-  const submitQuery = e => {
-    e.preventDefault();
-
-    const queryValue = e.target.elements.movieName.value.trim().toLowerCase();
-
-    // console.log('queryValue', queryValue);
-
-    if (queryValue === '') {
+    if (searchQuery === '') {
       return alert('PLEASE, ENTER MOVIE NAME!');
     }
-    // searchParams.set('query', queryValue);
-    // setSearchParams(searchParams);
+
+    setSearchParams({ query: searchQuery });
+    // const onHandleSubmit = value => {
+    //   setSearchParams({ query: value });
+    // };
+    setSearchQuery('');
   };
 
   return (
@@ -42,7 +37,7 @@ export const Searchbar = ({ onHandleSubmit }) => {
         autoComplete="off"
         autoFocus
         placeholder="Search movie"
-        value={query}
+        value={searchQuery}
         onChange={onChange}
       />
       <SearchButtonStyled type="submit">Search</SearchButtonStyled>
