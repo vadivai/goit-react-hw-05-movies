@@ -22,9 +22,7 @@ export const Searchbar = () => {
     }
 
     setSearchParams({ query: searchQuery });
-    // const onHandleSubmit = value => {
-    //   setSearchParams({ query: value });
-    // };
+
     setSearchQuery('');
   };
 

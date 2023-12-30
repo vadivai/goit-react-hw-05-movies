@@ -2,7 +2,7 @@ import React from 'react';
 import { useFetchMovieCast } from 'hooks/useFetchCast';
 import { CastInfo } from 'components/CastInfo/CastInfo';
 
-export const Cast = () => {
+const Cast = () => {
   const { cast, isLoading, error } = useFetchMovieCast();
 
   return (

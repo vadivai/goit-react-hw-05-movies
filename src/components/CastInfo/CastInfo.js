@@ -1,5 +1,5 @@
-// import { NoPhoto } from 'other/NotFoundPhoto';
-import { CastItem, CastStyled, NoPhoto2 } from './CastInfo.styled';
+import NoPhoto from 'other/no_photo-min.jpg';
+import { CastItem, CastStyled } from './CastInfo.styled';
 
 export const CastInfo = ({ castInfo }) => {
   return (
@@ -7,15 +7,14 @@ export const CastInfo = ({ castInfo }) => {
       {castInfo.map(({ cast_id, profile_path, name, character }) => {
         return (
           <CastItem key={cast_id}>
-            {profile_path ? (
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
-                alt={name}
-              />
-            ) : (
-              <NoPhoto2 />
-              //   <NoPhoto />
-            )}
+            <img
+              src={
+                profile_path
+                  ? `https://image.tmdb.org/t/p/w500/${profile_path}`
+                  : NoPhoto
+              }
+              alt={name}
+            />
             <p>{name}</p>
             <p>Role: {character}</p>
           </CastItem>

@@ -1,4 +1,5 @@
 import { Description, ItemWrapper } from './MovieInfo.styled';
+import NoPhoto from 'other/no_photo-min.jpg';
 
 export const MovieInfo = ({
   movieInfo: {
@@ -13,7 +14,11 @@ export const MovieInfo = ({
   return (
     <ItemWrapper>
       <img
-        src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+        src={
+          poster_path
+            ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+            : NoPhoto
+        }
         alt={title}
         width="180"
       />
